@@ -8,11 +8,11 @@ var HelperCanvas = function(baseComponent){
     return {
         constructor: function init(player, options){
             this.videoElement = options.video;
-            this.width = this.videoElement.videoWidth;
-            this.height = this.videoElement.videoHeight;
+            this.width = options.width;
+            this.height = options.height;
 
-            element.width = this.width;
-            element.height = this.height;
+            element.width = this.videoElement.videoWidth;
+            element.height = this.videoElement.videoHeight;
             element.style.display = "none";
             options.el = element;
 
@@ -28,7 +28,7 @@ var HelperCanvas = function(baseComponent){
         },
 
         update: function () {
-            this.context.drawImage(this.videoElement, 0, 0, this.width, this.height);
+            this.context.drawImage(this.videoElement, 0, 0, this.videoElement.videoWidth, this.videoElement.videoHeight);
         },
 
         el: function () {
