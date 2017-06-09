@@ -8,8 +8,8 @@ var HelperCanvas = function(baseComponent){
     return {
         constructor: function init(player, options){
             this.videoElement = options.video;
-            this.width = options.width;
-            this.height = options.height;
+            this.width = this.videoElement.videoWidth;
+            this.height = this.videoElement.videoHeight;
 
             element.width = this.width;
             element.height = this.height;
@@ -18,14 +18,15 @@ var HelperCanvas = function(baseComponent){
 
 
             this.context = element.getContext('2d');
-            this.context.drawImage(this.videoElement, 0, 0, this.width, this.height);
+            // this.context.drawImage(this.videoElement, 0, 0, this.width, this.height);
+            this.context.drawImage(this.videoElement, 0, 0, this.videoElement.videoWidth, this.videoElement.videoHeight);
             baseComponent.call(this, player, options);
         },
-        
+
         getContext: function () {
-          return this.context;  
+          return this.context;
         },
-        
+
         update: function () {
             this.context.drawImage(this.videoElement, 0, 0, this.width, this.height);
         },
